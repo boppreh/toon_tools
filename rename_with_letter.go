@@ -10,6 +10,10 @@ import (
 )
 
 func main() {
+	fmt.Println("LT_Tom, welcome to File Renamer!")
+	fmt.Println("This program adds a letter (or more) to all files in a given folder.")
+	fmt.Println()
+
 	if len(os.Args) <= 1 {
 		fmt.Println("ERROR")
 		fmt.Println("Please run this program by dragging and dropping a folder onto it.")
@@ -39,7 +43,7 @@ func main() {
     var str string
     reader := bufio.NewReader(os.Stdin)
     for {
-        fmt.Printf("What letter to add to to files in %s? ", path)
+        fmt.Printf("What letter to add to the files in %s? ", path)
         str, _ = reader.ReadString('\n')
         if str == "" {
         	fmt.Printf("ERROR: Cannot be empty.\n\n")
@@ -62,9 +66,11 @@ func main() {
     	fmt.Printf("mv %s %s\n", file, newFile)
     	err = os.Rename(file, newFile)
     	if err != nil {
-    		fmt.Printf("ERROR: failed to rename %s to %s because of: %s\n", file, newFile, err)
+    		fmt.Printf("ERROR: failed to rename %s to %s because of: %s. Continuing with the rest of the files...\n", file, newFile, err)
     	}
     }
 
+	fmt.Println("Press any key to exit...")
+	fmt.Scanln()
 	os.Exit(0)
 }
