@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
-    "regexp"
-    "io/ioutil"
+	"regexp"
 )
 
 func die(status int) {
@@ -15,18 +15,18 @@ func die(status int) {
 }
 
 func regexGlobOrDie(path string, patternString string) (matches []string) {
-    entries, err := ioutil.ReadDir(path)
+	entries, err := ioutil.ReadDir(path)
 	if err != nil {
 		fmt.Printf("ERROR: Could not read files in %s because of: %s\n", path, err)
 		die(2)
 	}
 
-    pattern := regexp.MustCompile("^" + patternString + "$")
-    for _, entry := range entries {
-        if !entry.IsDir() && pattern.MatchString(entry.Name()) {
-            matches = append(matches, filepath.Join(path, entry.Name()))
-        }
-    }
+	pattern := regexp.MustCompile("^" + patternString + "$")
+	for _, entry := range entries {
+		if !entry.IsDir() && pattern.MatchString(entry.Name()) {
+			matches = append(matches, filepath.Join(path, entry.Name()))
+		}
+	}
 
 	return matches
 }
