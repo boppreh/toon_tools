@@ -39,7 +39,7 @@ func main() {
     var str string
     reader := bufio.NewReader(os.Stdin)
     for {
-        fmt.Printf("What characters to add to to files in %s? ", path)
+        fmt.Printf("What letter to add to to files in %s? ", path)
         str, _ = reader.ReadString('\n')
         if str == "" {
         	fmt.Printf("ERROR: Cannot be empty.\n\n")
