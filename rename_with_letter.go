@@ -70,6 +70,7 @@ func main() {
     	}
     }
 
+    fmt.Println("\n\nAll done!\n")
 	fmt.Println("Press any key to exit...")
 	fmt.Scanln()
 	os.Exit(0)
